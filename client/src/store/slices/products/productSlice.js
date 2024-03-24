@@ -20,6 +20,7 @@ const productSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getProductsById.fulfilled, (state, {payload}) => {
             state.product = payload;
+            state.isLoading = false;
         })
         builder.addCase(getProductsById.pending, (state) => {
             state.isLoading = true;
