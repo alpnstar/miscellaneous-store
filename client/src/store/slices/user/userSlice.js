@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, current} from "@reduxjs/toolkit";
 import axios from "axios";
 import {BASE_URL} from "../../../utils/BASE_URL";
 
@@ -43,20 +43,38 @@ const userSlice = createSlice({
     initialState: {
         currentUser: null,
         cart: [],
+        totalCartQuantity: 0,
         isLoading: false,
         formType: "signup",
         showForm: false,
     },
     reducers: {
         addItemToCart: (state, {payload}) => {
-            let newCart = [...state.cart];
-            const find = state.cart.find(({id}) => id === payload.id);
-            if (find) {
-                newCart = newCart.map(item => {
-                    return item.id === payload.id ? {...item, quantity: item.quantity + 1} : item;
-                })
-            } else newCart.push({...payload, quantity: 1});
-            state.cart = newCart;
+            const search = state.cart.findIndex(item => item.product.id === payload.product.id);
+            if (search !== -1) {
+                const item = state.cart[search];
+                state.cart[search] = {
+                    ...item,
+                    quantity: payload.quantity,
+                }
+            } else state.cart.push({
+                quantity: payload.quantity,
+                product: {
+                    ...payload.product,
+                }
+            })
+        },
+        removeItemInCart: (state, {payload}) => {
+            state.cart = state.cart.filter(item => item.product.id !== payload);
+        },
+        getCart: (state, {payload}) => {
+            state.cart = JSON.parse(localStorage.getItem('cart')) || [];
+        },
+        setCart: (state, {payload}) => {
+            localStorage.setItem('cart', JSON.stringify(state.cart));
+        },
+        setCartTotalQuantity: (state, {payload}) => {
+            state.totalCartQuantity = state.cart.reduce((acc, item) => acc + item.quantity, 0);
         },
         toggleForm: (state, {payload}) => {
             state.showForm = payload;

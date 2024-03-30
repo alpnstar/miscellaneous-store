@@ -6,15 +6,21 @@ import Footer from "./components/Footer/Footer";
 import './styles/index.css'
 import {useDispatch, useSelector} from "react-redux";
 import UserForm from "./components/User/UserForm";
-import {loginUser} from "./store/slices/user/userSlice";
+import {loginUser, userActions} from "./store/slices/user/userSlice";
 
 const App = () => {
     const categories = useSelector(state => state.categories.list);
+    const cart = useSelector(({user}) => user.cart);
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(loginUser({onStart: true}));
+        dispatch(userActions.getCart());
     }, []);
+
+    useEffect(() => {
+        dispatch(userActions.setCart());
+        dispatch(userActions.setCartTotalQuantity());
+    }, [cart]);
 
     return (
         <div className="app">
