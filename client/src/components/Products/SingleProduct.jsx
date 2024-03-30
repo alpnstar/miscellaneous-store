@@ -2,15 +2,10 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 
-// import {useGetProductQuery} from "../../features/api/apiSlice";
-// import { getRelatedProducts } from "../../features/products/productsSlice";
-
-import {ROUTES} from "../../utils/ROUTES";
-
-// import Product from "./Product";
 import Products from "./Products";
 import Product from "./Product";
 import {getProductsById} from "../../store/slices/products/productSlice";
+import {productsActions} from "../../store/slices/products/productsSlice";
 
 const SingleProduct = () => {
     const dispatch = useDispatch();
@@ -29,24 +24,23 @@ const SingleProduct = () => {
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, [isLoading, isFetching, isSuccess]);
 
-    // useEffect(() => {
-    //     if (!data || !list.length) return;
-    //
-    //     dispatch(getRelatedProducts(data.category.id));
-    // }, [data, dispatch, list.length]);
+    useEffect(() => {
+        if (!product.product.category) return;
+        dispatch(productsActions.getRelatedProducts(product.product.category.id));
+    }, [product]);
 
     return product.isLoading ? (
-        <section className="preloader">Идет загрузка...</section>
-    )
+            <section className="preloader">Идет загрузка...</section>
+        )
         : product.isRejected ? (
                 <section className="preloader">Не найдено</section>
             )
-        : (
-        <>
-            <Product product={product.product}/>
-            <Products products={related} amount={5} title="Related products"/>
-        </>
-    );
+            : (
+                <>
+                    <Product product={product.product}/>
+                    <Products products={related} amount={5} title="Related products"/>
+                </>
+            );
 };
 
 export default SingleProduct;

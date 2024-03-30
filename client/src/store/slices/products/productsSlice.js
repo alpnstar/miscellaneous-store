@@ -19,7 +19,11 @@ const productsSlice = createSlice({
     },
     reducers: {
         filterByPrice(state, {payload}) {
+
             state.filtered = state.list.filter(i => i.price <= payload);
+        },
+        getRelatedProducts(state, {payload}) {
+            state.related = state.list.filter(({category}) => category.id === payload);
         }
     },
     extraReducers: (builder) => {

@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
-import { ROUTES } from "../../utils/ROUTES";
+import {ROUTES} from "../../utils/ROUTES";
 
 import styles from "../../styles/Product.module.css";
 
-// import { addItemToCart } from "../../features/user/userSlice";
+import {userActions} from "../../store/slices/user/userSlice";
 
 const SIZES = [4, 4.5, 5];
 
 const Product = ({product}) => {
-    const { title, price, images, description } = product;
+    const {title, price, images = [], description} = product;
 
     const dispatch = useDispatch();
-
+    const cart = useSelector(state => state.user.cart);
     const [currentImage, setCurrentImage] = useState();
     const [currentSize, setCurrentSize] = useState();
 
     useEffect(() => {
-        // if (!images.length) return;
-        //
-        // setCurrentImage(images[0]);
+        if (!images.length) return;
+        setCurrentImage(images[0]);
     }, [images]);
 
     const addToCart = () => {
-        dispatch(addItemToCart(product));
+        dispatch(userActions.addItemToCart(product));
     };
 
     return (
@@ -33,17 +32,17 @@ const Product = ({product}) => {
             <div className={styles.images}>
                 <div
                     className={styles.current}
-                    style={{ backgroundImage: `url(${currentImage})` }}
+                    style={{backgroundImage: `url(${currentImage})`}}
                 />
                 <div className={styles["images-list"]}>
-                    {/*{images.map((image, i) => (*/}
-                    {/*    <div*/}
-                    {/*        key={i}*/}
-                    {/*        className={styles.image}*/}
-                    {/*        style={{ backgroundImage: `url(${image})` }}*/}
-                    {/*        onClick={() => setCurrentImage(image)}*/}
-                    {/*    />*/}
-                    {/*))}*/}
+                    {images.map((image, i) => (
+                        <div
+                            key={i}
+                            className={styles.image}
+                            style={{backgroundImage: `url(${image})`}}
+                            onClick={() => setCurrentImage(image)}
+                        />
+                    ))}
                 </div>
             </div>
             <div className={styles.info}>

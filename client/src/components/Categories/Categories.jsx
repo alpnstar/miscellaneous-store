@@ -2,7 +2,6 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 import styles from "../../styles/Categories.module.css";
-import {useSelector} from "react-redux";
 
 const Categories = ({title, categories = [], amount = 5}) => {
     const list = categories.filter((_, i) => i < amount);

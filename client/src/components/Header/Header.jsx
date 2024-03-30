@@ -1,21 +1,39 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from '../../styles/Header.module.css';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {ROUTES} from "../../utils/ROUTES";
 import LOGO from '../../../public/images/logo.svg';
+import {useDispatch, useSelector} from "react-redux";
+import {userActions} from "../../store/slices/user/userSlice";
 
 const Header = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [account, setAccount] = useState({
+        "name": "Guest",
+        "avatar": "https://i.pinimg.com/474x/57/9d/27/579d27ca2be7cf205166c6375d706ef9.jpg",
+    });
+    const user = useSelector(({user}) => user.currentUser);
+
+    function handleClick() {
+        if (!user) dispatch(userActions.toggleForm(true));
+        else navigate('/profile');
+    }
+
+    useEffect(() => {
+        if (user) setAccount(user);
+    }, [user]);
+
     return (
         <div className={styles.header}>
             <div className={styles.logo}>
-                <Link to={ROUTES.HOME}></Link>
-                <img src={LOGO} alt="Stuff"/>
+                <Link to={ROUTES.HOME}><img src={LOGO} alt="Stuff"/></Link>
             </div>
             <div className={styles.info}>
-                <div className={styles.user}>
+                <div onClick={handleClick} className={styles.user}>
                     <div className={styles.avatar}
-                         style={{backgroundImage: `url(https://www.gravatar.com/avatar/1cf20df6c375725351e716a1b5aba73c.jpg?s=80&d=wavatar&r=g)`}}></div>
-                    <div className={styles.username}>Guest</div>
+                         style={{backgroundImage: `url(${account.avatar})`}}></div>
+                    <div className={styles.username}>{account.name}</div>
                 </div>
                 <form className={styles.form}>
                     <div className={styles.icon}>

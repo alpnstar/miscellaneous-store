@@ -1,18 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styles from '../../styles/Sidebar.module.css';
 import {NavLink} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {getCategories} from "../../store/slices/categories/categoriesSlice";
 
-const Sidebar = () => {
-    const list = useSelector(state => state.categories.list);
-
+const Sidebar = ({categories, amount}) => {
+    const pinched = categories.filter((_, i) => i < amount);
     return (
         <section className={styles.sidebar}>
             <div className={styles.title}>CATEGORIES</div>
             <nav>
                 <ul className={styles.menu}>
-                    {list.map(({id, name}) => (
+                    {pinched.map(({id, name}) => (
                         <li key={id}>
                             <NavLink
                                 className={({isActive}) =>
