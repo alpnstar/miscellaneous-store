@@ -16,7 +16,6 @@ const Product = ({product}) => {
     const dispatch = useDispatch();
     const [currentImage, setCurrentImage] = useState();
     const [currentSize, setCurrentSize] = useState();
-    const cart = useSelector(({user}) => user.cart);
     useEffect(() => {
         if (!images.length) return;
         setCurrentImage(images[0]);

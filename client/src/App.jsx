@@ -12,6 +12,7 @@ const App = () => {
     const categories = useSelector(state => state.categories.list);
     const cart = useSelector(({user}) => user.cart);
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(loginUser({onStart: true}));
         dispatch(userActions.getCart());

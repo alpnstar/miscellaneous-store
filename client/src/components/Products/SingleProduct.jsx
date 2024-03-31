@@ -16,7 +16,7 @@ const SingleProduct = () => {
     const product = useSelector(({product}) => product);
     useEffect(() => {
         dispatch(getProductsById(id));
-    }, []);
+    }, [id]);
     // useEffect(() => {
     //     if (!isFetching && !isLoading && !isSuccess) {
     //         navigate(ROUTES.HOME);

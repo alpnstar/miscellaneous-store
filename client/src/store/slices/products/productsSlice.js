@@ -8,6 +8,17 @@ export const getProductsAll = createAsyncThunk(
         const res = await axios.get(BASE_URL + '/products');
         return res.data;
     }
+);
+export const getProductsByTitle = createAsyncThunk(
+    "products/getProductsByTitle",
+    async (title) => {
+        const res = await axios.get(BASE_URL + '/products', {
+            params: {
+                title,
+            }
+        });
+        return res.data;
+    }
 )
 
 const productsSlice = createSlice({
@@ -15,6 +26,7 @@ const productsSlice = createSlice({
     initialState: {
         list: [],
         filtered: [],
+        found: [],
         related: [],
     },
     reducers: {
@@ -32,6 +44,9 @@ const productsSlice = createSlice({
         })
         builder.addCase(getProductsAll.rejected, (state, action) => {
             console.log(action.error);
+        })
+        builder.addCase(getProductsByTitle.fulfilled, (state, {payload}) => {
+            state.found = payload;
         })
 
     }

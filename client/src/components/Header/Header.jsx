@@ -5,10 +5,15 @@ import {ROUTES} from "../../utils/ROUTES";
 import LOGO from '../../../public/images/logo.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {userActions} from "../../store/slices/user/userSlice";
+import {getProductsByTitle, productsActions} from "../../store/slices/products/productsSlice";
+import {BASE_URL} from "../../utils/BASE_URL";
 
 const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [search, setSearch] = useState('');
+    const [searchDisplay, setSearchDisplay] = useState(false);
+    const foundProducts = useSelector(({products}) => products.found);
     const [account, setAccount] = useState({
         "name": "Guest",
         "avatar": "https://i.pinimg.com/474x/57/9d/27/579d27ca2be7cf205166c6375d706ef9.jpg",
@@ -21,6 +26,15 @@ const Header = () => {
         else navigate('/profile');
     }
 
+    function handleChangeSearch(e) {
+        setSearch(e.target.value);
+    }
+
+    useEffect(() => {
+        if (!search) return setSearchDisplay(false);
+        setSearchDisplay(true);
+        dispatch(getProductsByTitle(search));
+    }, [search]);
     useEffect(() => {
         if (user) setAccount(user);
     }, [user]);
@@ -44,13 +58,27 @@ const Header = () => {
 
                         </svg>
                     </div>
-                    <div className={styles.input}>
+                    <div className={styles.input} onClick={() => setSearchDisplay(!searchDisplay)}>
                         <input type="search"
                                name='search'
                                placeholder="Type anything..."
                                autoComplete="off"
-                               onChange={() => {
-                               }}/>
+                               value={search}
+                               onChange={handleChangeSearch}/>
+                        {searchDisplay && foundProducts.length !== 0 && search &&
+                            <ul className={styles.searchResult}>
+                                {foundProducts.map((item, index) => {
+                                    if (index <= 4) return (
+                                        <Link key={item.id} to={'/products/' + item.id}>
+                                            <li key={item.title}>
+                                                <img src={item.images[0]} alt=""/>
+                                                {item.title}
+                                            </li>
+
+                                        </Link>
+                                    )
+                                })}
+                            </ul>}
                     </div>
                 </form>
                 <div className={styles.account}>
