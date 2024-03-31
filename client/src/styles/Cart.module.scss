@@ -66,14 +66,20 @@
 .quantity {
   display: flex;
   align-items: center;
-}
 
-.quantity span {
-  width: 40px;
-  text-align: center;
-  font-size: 14px;
-  line-height: 17px;
-  color: var(--dark-sea);
+  span {
+    width: 40px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 17px;
+    color: var(--dark-sea);
+  }
+
+  svg {
+    width: 17px;
+    height: 17px;
+    fill: rgba(255, 255, 255, 0.5);
+  }
 }
 
 .minus,
@@ -86,36 +92,32 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-}
 
-.quantity svg {
-  width: 17px;
-  height: 17px;
-  fill: rgba(255, 255, 255, 0.5);
-}
+  &:hover {
+    background: var(--violet);
 
-.plus:hover,
-.minus:hover {
-  background: var(--violet);
-}
+    svg {
+      fill: rgba(255, 255, 255, 1);
 
-.plus:hover svg,
-.minus:hover svg {
-  fill: rgba(255, 255, 255, 1);
+    }
+  }
 }
 
 .close {
   cursor: pointer;
-}
 
-.close svg {
-  width: 16px;
-  height: 16px;
-  stroke: rgba(255, 255, 255, 0.5);
-}
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke: rgba(255, 255, 255, 0.5);
+  }
 
-.close:hover svg {
-  stroke: rgba(255, 255, 255, 1);
+  &:hover {
+    svg {
+      stroke: rgba(255, 255, 255, 1);
+
+    }
+  }
 }
 
 .actions {
@@ -130,8 +132,8 @@
   font-size: 20px;
   line-height: 24px;
   color: var(--grey);
-}
 
-.total span {
-  color: #fff;
+  span {
+    color: #fff;
+  }
 }

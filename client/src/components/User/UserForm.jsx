@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import UserSignupForm from "./UserSignupForm";
 import UserLoginForm from "./UserLoginForm";
 
-import styles from "../../styles/User.module.css";
+import styles from "../../styles/User.module.scss";
 import {userActions} from "../../store/slices/user/userSlice";
 
 const UserForm = () => {

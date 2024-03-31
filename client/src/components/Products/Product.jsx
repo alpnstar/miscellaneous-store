@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {ROUTES} from "../../utils/ROUTES";
 
-import styles from "../../styles/Product.module.css";
+import styles from "../../styles/Product.module.scss";
 
 import {userActions} from "../../store/slices/user/userSlice";
 

@@ -15,10 +15,9 @@
   border-radius: 8px;
   overflow: hidden;
   width: calc(100% / 5 - 20px);
-}
-
-.product:nth-child(5n) {
-  width: calc(100% / 5);
+  &:nth-child(5n) {
+    width: calc(100% / 5);
+  }
 }
 
 .image {

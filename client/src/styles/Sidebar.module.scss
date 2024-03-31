@@ -23,15 +23,16 @@
   font-size: 14px;
   line-height: 17px;
   text-transform: capitalize;
+  &:hover {
+    color: var(--white);
+  }
+
+  &.active {
+    color: var(--violet);
+  }
 }
 
-.link:hover {
-  color: var(--white);
-}
 
-.link.active {
-  color: var(--violet);
-}
 
 .footer {
   margin-top: auto;

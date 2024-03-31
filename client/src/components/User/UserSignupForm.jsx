@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import styles from "../../styles/User.module.css";
+import styles from "../../styles/User.module.scss";
 import {createUser} from "../../store/slices/user/userSlice";
 
 const UserSignupForm = ({toggleCurrentFormType, closeForm}) => {

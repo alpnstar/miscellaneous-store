@@ -1,6 +1,6 @@
 import React from 'react';
 import {ROUTES} from "../../utils/ROUTES";
-import styles from '../../styles/Footer.module.css';
+import styles from '../../styles/Footer.module.scss';
 import LOGO from '../../../public/images/logo.svg';
 import {Link} from "react-router-dom";
 

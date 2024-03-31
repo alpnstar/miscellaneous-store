@@ -91,11 +91,11 @@ button {
   font-weight: 600;
   line-height: 20px;
   cursor: pointer;
+  &:hover {
+    background: var(--violet);
+  }
 }
 
-button:hover {
-  background: var(--violet);
-}
 
 h2 {
   font-weight: 600;

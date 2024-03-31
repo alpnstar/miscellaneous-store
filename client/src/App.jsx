@@ -3,7 +3,7 @@ import AppRoutes from "./components/Routes/Routes";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import './styles/index.css'
+import './styles/index.scss'
 import {useDispatch, useSelector} from "react-redux";
 import UserForm from "./components/User/UserForm";
 import {loginUser, userActions} from "./store/slices/user/userSlice";

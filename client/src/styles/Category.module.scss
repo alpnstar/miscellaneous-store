@@ -19,24 +19,22 @@
   display: flex;
   align-items: center;
   min-width: 225px;
+  input {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+  }
+  span {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--dark-sea);
+    text-align: right;
+  }
 }
 
 .full {
   width: 100%;
-}
-
-.filter input {
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
-}
-
-.filter span {
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 16px;
-  color: var(--dark-sea);
-  text-align: right;
 }
 
 .more {

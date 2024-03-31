@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import Products from "../Products/Products";
 import {getCategory} from "../../store/slices/categories/categorySlice";
-import styles from "../../styles/Category.module.css";
+import styles from "../../styles/Category.module.scss";
 import Poster from "../Poster/Poster";
 
 const SingleCategory = () => {

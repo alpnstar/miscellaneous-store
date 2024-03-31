@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import styles from '../../styles/Header.module.css';
+import styles from '../../styles/Header.module.scss';
 import {Link, useNavigate} from "react-router-dom";
 import {ROUTES} from "../../utils/ROUTES";
 import LOGO from '../../../public/images/logo.svg';

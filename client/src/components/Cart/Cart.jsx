@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "../../styles/Cart.module.css";
+import styles from "../../styles/Cart.module.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {userActions} from "../../store/slices/user/userSlice";
 

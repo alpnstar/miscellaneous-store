@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 
-import styles from "../../styles/User.module.css";
+import styles from "../../styles/User.module.scss";
 import {loginUser} from "../../store/slices/user/userSlice";
 
 const UserLoginForm = ({toggleCurrentFormType, closeForm}) => {
