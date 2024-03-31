@@ -12,6 +12,12 @@ const Cart = () => {
         dispatch(userActions.addItemToCart({product, quantity: quantity}));
     }
 
+    console.log(cart);
+
+    function cartSum(cart) {
+        return cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0)
+    }
+
     function removeItem(id) {
         dispatch(userActions.removeItemInCart(id));
     }
@@ -98,7 +104,7 @@ const Cart = () => {
 
                     <div className={styles.actions}>
                         <div className={styles.total}>
-                            TOTAL PRICE:{" "}
+                            TOTAL PRICE: {cartSum(cart) + '$'}
                             <span>
               </span>
                         </div>
