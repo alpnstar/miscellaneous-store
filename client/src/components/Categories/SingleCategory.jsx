@@ -1,25 +1,23 @@
 import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 import Products from "../Products/Products";
-import {getCategory} from "../../store/slices/categories/categorySlice";
 import styles from "../../styles/Category.module.scss";
 import Poster from "../Poster/Poster";
+import {useGetCategoryProductsQuery} from "../../store/query/categoriesApi";
 
 const SingleCategory = () => {
     const {id} = useParams();
-    const dispatch = useDispatch();
-    const categoryList = useSelector(state => state.category.list);
-
-    useEffect(() => {
-        dispatch(getCategory(id));
-    }, [id]);
-
+    const {
+        data: catProducts,
+        error: catProductsError,
+        isLoading: catProductsLoading,
+        refetch: catProductsRefetch,
+    } = useGetCategoryProductsQuery(id);
     return (
         <>
             <Poster/>
             <div className={styles.wrapper}>
-                <Products products={categoryList}/>
+                <Products products={catProducts} isLoading={catProductsLoading} isError={catProductsError}/>
             </div>
         </>
 

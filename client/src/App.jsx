@@ -7,11 +7,13 @@ import './styles/index.scss'
 import {useDispatch, useSelector} from "react-redux";
 import UserForm from "./components/User/UserForm";
 import {loginUser, userActions} from "./store/slices/user/userSlice";
+import {useGetCategoriesQuery} from "./store/query/categoriesApi";
 
 const App = () => {
-    const categories = useSelector(state => state.categories.list);
     const cart = useSelector(({user}) => user.cart);
     const dispatch = useDispatch();
+
+    const {data: categories} = useGetCategoriesQuery();
 
     useEffect(() => {
         dispatch(loginUser({onStart: true}));
@@ -22,7 +24,6 @@ const App = () => {
         dispatch(userActions.setCart());
         dispatch(userActions.setCartTotalQuantity());
     }, [cart]);
-
     return (
         <div className="app">
             <Header/>

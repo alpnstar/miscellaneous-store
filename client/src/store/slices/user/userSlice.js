@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice, current} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {BASE_URL} from "../../../utils/BASE_URL";
 
@@ -96,3 +96,4 @@ const userSlice = createSlice({
     }
 })
 export const {actions: userActions, reducer: userReducer} = userSlice;
+// asyncThunk_refactored_to_rtk

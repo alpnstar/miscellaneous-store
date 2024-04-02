@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../../styles/Sidebar.module.scss';
 import {NavLink} from "react-router-dom";
 
-const Sidebar = ({categories, amount}) => {
+const Sidebar = ({categories =[], amount}) => {
     const pinched = categories.filter((_, i) => i < amount);
     return (
         <section className={styles.sidebar}>

@@ -10,7 +10,7 @@ import Cart from "../Cart/Cart";
 const AppRoutes = () => {
     return (
         <Routes>
-            <Route path='/' element={<Home/>}/>
+            <Route index element={<Home/>}/>
             <Route path={ROUTES.PRODUCT} element={<SingleProduct/>}/>
             <Route path={ROUTES.CATEGORY} element={<SingleCategory/>}/>
             <Route path={ROUTES.PROFILE} element={<Profile/>}/>

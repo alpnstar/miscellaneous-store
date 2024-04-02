@@ -1,33 +1,35 @@
-import React, {useEffect} from 'react';
+import React, {useMemo} from 'react';
 import Poster from "../Poster/Poster";
 import Products from "../Products/Products";
 import {useDispatch, useSelector} from "react-redux";
-import {getProductsAll, productsActions} from "../../store/slices/products/productsSlice";
 import Categories from "../Categories/Categories";
-import {getCategories} from "../../store/slices/categories/categoriesSlice";
 import Banner from "../Banner/Banner";
+import {useGetProductsQuery} from "../../store/query/productsApi";
+import {categoriesApi, useGetCategoriesQuery} from "../../store/query/categoriesApi";
 
 const FILTER_PRICE = 100;
 
 const Home = () => {
     const dispatch = useDispatch();
-    const products = useSelector(state => state.products);
-    const categories = useSelector(state => state.categories);
+    const {
+        data: products,
+        error: productsError,
+        isLoading: productsLoading,
+    } = useGetProductsQuery();
 
-    useEffect(() => {
-        dispatch(getProductsAll());
-        dispatch(getCategories());
-    }, []);
-    useEffect(() => {
-        if (!products.list.length) return;
-        dispatch(productsActions.filterByPrice(FILTER_PRICE));
-    }, [products.list]);
+    const filtered = useMemo(() =>
+        products ? products.filter(i => i.price <= FILTER_PRICE) : [], [products]);
+
+    const {data: categories} = useGetCategoriesQuery();
+
+
+    ;
     return (
         <>
             <Poster/>
             <Banner/>
-            <Products products={products.filtered} title={'Tranding'}/>
-            <Categories categories={categories.list} title={'Categories '}/>
+            <Products products={filtered} isLoading={productsLoading} isError={productsError} title={'Tranding'}/>
+            <Categories categories={categories} title={'Categories '}/>
         </>
     );
 };
