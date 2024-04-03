@@ -1,5 +1,4 @@
-import React, {useEffect, useMemo} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, {useMemo} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 
 import Products from "./Products";

@@ -5,7 +5,7 @@ import {ROUTES} from "../../utils/ROUTES";
 import LOGO from '../../../public/images/logo.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {userActions} from "../../store/slices/user/userSlice";
-import {productsApi, useGetProductsByTitleQuery} from "../../store/query/productsApi";
+import {useGetProductsByTitleQuery} from "../../store/query/productsApi";
 
 const Header = () => {
     const navigate = useNavigate();
