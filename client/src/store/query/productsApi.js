@@ -17,19 +17,10 @@ export const productsApi = createApi({
             providesTags: ['product'],
         }),
         getProductsByTitle: builder.query({
-            queryFn: async (params) => {
-                try {
-                    if (!params.title) return {data: undefined};
-                    const response = await axios.get(BASE_URL + '/products', {params});
-                    return {data: response.data};
-                } catch (error) {
-                    return {error};
-                }
-
-
-            },
+            query: (params) => buildUrl(BASE_URL + '/products', params),
             providesTags: ['products'],
         }),
     })
 })
 export const {useGetProductsQuery, useGetProductByIdQuery, useGetProductsByTitleQuery} = productsApi
+

@@ -5,13 +5,20 @@ import {ROUTES} from "../../utils/ROUTES";
 import LOGO from '../../../public/images/logo.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {userActions} from "../../store/slices/user/userSlice";
-import {useGetProductsByTitleQuery} from "../../store/query/productsApi";
+import {productsApi, useGetProductsByTitleQuery} from "../../store/query/productsApi";
 
 const Header = () => {
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
+    const dispatch = useDispatch();
     const [searchDisplay, setSearchDisplay] = useState(false);
-    const {data: foundProducts} = useGetProductsByTitleQuery({title: search});
+    const {
+        data: foundProducts,
+        isFetching: foundProductsLoading,
+        refetch
+    } = useGetProductsByTitleQuery({title: search}, {
+        skip: !search,
+    });
     const [account, setAccount] = useState({
         "name": "Guest",
         "avatar": "https://i.pinimg.com/474x/57/9d/27/579d27ca2be7cf205166c6375d706ef9.jpg",
@@ -61,19 +68,21 @@ const Header = () => {
                                autoComplete="off"
                                value={search}
                                onChange={handleChangeSearch}/>
-                        {searchDisplay &&  foundProducts && search &&
+                        {searchDisplay && foundProducts && search &&
                             <ul className={styles.searchResult}>
-                                {foundProducts.map((item, index) => {
-                                    if (index <= 4) return (
-                                        <Link key={item.id} to={'/products/' + item.id}>
-                                            <li key={item.title}>
-                                                <img src={item.images[0]} alt=""/>
-                                                {item.title}
-                                            </li>
 
-                                        </Link>
-                                    )
-                                })}
+                                {foundProductsLoading ? <li>Загрузка...</li> : !foundProducts.length ?
+                                    <li>Ничего не найдено</li> : foundProducts.map((item, index) => {
+                                        if (index <= 4) return (
+                                            <Link key={item.id} to={'/products/' + item.id}>
+                                                <li key={item.title}>
+                                                    <img src={item.images[0]} alt=""/>
+                                                    {item.title}
+                                                </li>
+
+                                            </Link>
+                                        )
+                                    })}
                             </ul>}
                     </div>
                 </form>
