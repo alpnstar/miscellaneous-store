@@ -12,17 +12,16 @@ const defaultParams = {
 const SingleCategory = () => {
 
     const {id} = useParams();
-    const [isEnd, setIsEnd] = useState(false);
+    const [isEnd, setIsEnd] = useState(true);
     const [params, setParams] = useState(defaultParams);
     const [items, setItems] = useState([]);
     const {data: category} = useGetCategoryByIdQuery(id);
     const {
         data: catProducts,
         error: catProductsError,
-        isLoading: catProductsLoading,
+        isFetching: catProductsLoading,
     } = useGetCategoryProductsQuery({id, params});
 
-    console.log(category)
 
     function handleSubmit() {
 
@@ -37,12 +36,13 @@ const SingleCategory = () => {
     }
 
     useEffect(() => {
-
-    }, [items]);
+        setItems([]);
+        setParams(defaultParams)
+    }, [id]);
     useEffect(() => {
         if (catProducts) {
-            setItems(items.concat(catProducts));
-            catProducts.length < 5 && setIsEnd(true);
+            setItems(prev => prev.concat(catProducts));
+            catProducts.length < 5 ? setIsEnd(true) : setIsEnd(false);
         }
     }, [catProducts]);
     return (
@@ -85,9 +85,9 @@ const SingleCategory = () => {
                     <button type="submit" hidden/>
                 </form>
 
-                {catProductsLoading ? (
+                {catProductsLoading && !items.length ? (
                     <div className="preloader">Loading...</div>
-                ) : catProductsError || !catProducts.length ? (
+                ) : catProductsError || !items.length ? (
                     <div className={styles.back}>
                         <span>No results</span>
                         <button onClick={handleReset}>Reset</button>
@@ -118,3 +118,4 @@ const SingleCategory = () => {
 };
 
 export default SingleCategory;
+loading_of_products_fixed_&_minor_improvements
