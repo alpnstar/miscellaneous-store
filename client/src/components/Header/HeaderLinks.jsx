@@ -8,15 +8,6 @@ const HeaderLinks = () => {
     const cartTotalQuantity = useSelector(({user}) => user.totalCartQuantity);
     return (
         <div className={styles.account}>
-            <Link to={ROUTES.HOME} className={styles.favourites}>
-                <svg className={styles["icon-fav"]} fill="inherit" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24">
-                    <path
-                        d="M3 12C0.75 9 1.5 4.5 5.25 3C9 1.5 11.25 4.5 12 6C12.75 4.5 15.75 1.5 19.5 3C23.25 4.5 23.25 9 21 12C18.75 15 12 21 12 21C12 21 5.25 15 3 12Z"
-                        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-
-                </svg>
-            </Link>
             <Link to={ROUTES.CART} className={styles.cart}>
                 <svg className={styles["icon-cart"]} fill="inherit" xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 24 24">

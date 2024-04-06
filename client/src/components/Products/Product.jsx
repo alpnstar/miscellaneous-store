@@ -1,12 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
 
 import {ROUTES} from "../../utils/ROUTES";
 
 import styles from "../../styles/Product.module.scss";
-
-import {userActions} from "../../store/slices/user/userSlice";
 import ProductImages from "./ProductImages";
 import ProductInfo from "./ProductInfo";
 import ProductActions from "./ProductActions";

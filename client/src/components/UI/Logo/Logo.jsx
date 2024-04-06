@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from "../../../styles/Footer.module.scss";
 import {Link} from "react-router-dom";
 import {ROUTES} from "../../../utils/ROUTES";
 import LOGO from "../../../../public/images/logo.svg";

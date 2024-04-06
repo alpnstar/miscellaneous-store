@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import Products from "../Products/Products";
 import styles from "../../styles/Category.module.scss";
 import Poster from "../Poster/Poster";
 import {useGetCategoryByIdQuery, useGetCategoryProductsQuery} from "../../store/query/categoriesApi";
@@ -50,10 +49,11 @@ const SingleCategory = () => {
         setValues(defaultValues);
     }, [id]);
     useEffect(() => {
-        if (catProducts) {
-            setItems(prev => prev.concat(catProducts));
-            catProducts.length < 5 ? setIsEnd(true) : setIsEnd(false);
-        }
+        if (!catProducts) return;
+
+        setItems(prev => prev.concat(catProducts));
+        catProducts.length < 5 ? setIsEnd(true) : setIsEnd(false);
+
     }, [catProducts]);
     return (
         <>

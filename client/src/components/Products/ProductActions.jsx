@@ -19,10 +19,11 @@ const ProductActions = ({currentSize}) => {
                 >
                     Add to cart
                 </button>
-                <button className={styles.favourite}>Add to favourites</button>
             </div>
         </>
     );
 };
 
 export default ProductActions;
+
+//cut_unimplemented_functionality_favorites

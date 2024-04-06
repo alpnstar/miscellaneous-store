@@ -1,8 +1,7 @@
 import React from "react";
 
 import styles from "../../styles/Cart.module.scss";
-import {useDispatch, useSelector} from "react-redux";
-import _ from "lodash";
+import {useSelector} from "react-redux";
 import CartItems from "./CartItems";
 import CartTotalPrice from "./CartTotalPrice";
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '../../styles/Sidebar.module.scss';
-import {NavLink} from "react-router-dom";
 import SidebarNav from "./SidebarNav";
 import SidebarFooter from "./SidebarFooter";
 

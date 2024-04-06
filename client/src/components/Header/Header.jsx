@@ -1,11 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import styles from '../../styles/Header.module.scss';
-import {Link, useNavigate} from "react-router-dom";
-import {ROUTES} from "../../utils/ROUTES";
-import LOGO from '../../../public/images/logo.svg';
-import {useDispatch, useSelector} from "react-redux";
-import {userActions} from "../../store/slices/user/userSlice";
-import {useGetProductsByTitleQuery} from "../../store/query/productsApi";
 import HeaderUser from "./HeaderUser";
 import HeaderSearch from "./HeaderSearch";
 import HeaderLinks from "./HeaderLinks";

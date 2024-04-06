@@ -1,7 +1,6 @@
 import React, {useMemo} from 'react';
 import Poster from "../Poster/Poster";
 import Products from "../Products/Products";
-import {useDispatch} from "react-redux";
 import Categories from "../Categories/Categories";
 import Banner from "../Banner/Banner";
 import {useGetProductsQuery} from "../../store/query/productsApi";

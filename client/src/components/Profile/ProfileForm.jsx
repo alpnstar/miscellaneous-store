@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styles from "../../styles/Profile.module.scss";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {updateUser} from "../../store/slices/user/userSlice";
 
 const ProfileForm = ({currentUser}) => {
