@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {BASE_URL} from "../../utils/BASE_URL";
-import {buildUrl} from "../../utils/common";
+import {buildUrl, clearParams} from "../../utils/common";
 
 export const categoriesApi = createApi({
     reducerPath: 'categories',
@@ -13,7 +13,10 @@ export const categoriesApi = createApi({
             query: () => '',
         }),
         getCategoryProducts: builder.query({
-            query: (data) => buildUrl(data.id + '/products', data.params),
+            query: (data) => buildUrl(
+                data.id + '/products',
+                clearParams(data.params, ['offset', 'limit'])
+            )
         })
     })
 })

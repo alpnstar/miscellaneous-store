@@ -29,7 +29,11 @@ const UserLoginForm = ({toggleCurrentFormType, closeForm}) => {
         <div className={styles.wrapper}>
             <div className={styles.close} onClick={closeForm}>
                 <svg className="icon">
-                    <use xlinkHref={`${process.env.PUBLIC_URL}/sprite.svg#close`}/>
+                    <path d="M4.375 4.375L15.625 15.625" strokeWidth="2" strokeLinecap="round"
+                          strokeLinejoin="round"></path>
+                    <path d="M4.375 15.625L15.625 4.375" strokeWidth="2" strokeLinecap="round"
+                          strokeLinejoin="round"></path>
+
                 </svg>
             </div>
 

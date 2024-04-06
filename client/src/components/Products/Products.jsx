@@ -2,6 +2,8 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 import styles from "../../styles/Products.module.scss";
+import ProductsInfo from "./ProductsInfo";
+import ProductsImages from "./ProductsImages";
 
 const Products = ({title, style = {}, products = [], isLoading, isError, amount = 10}) => {
     const list = products.filter((_, i) => i < amount);
@@ -20,27 +22,8 @@ const Products = ({title, style = {}, products = [], isLoading, isError, amount 
                                   price
                               }) => (
                         <Link to={`/products/${id}`} key={id} className={styles.product}>
-                            <div
-                                className={styles.image}
-                                style={{backgroundImage: `url(${images[0]})`}}
-                            />
-
-                            <div className={styles.wrapper}>
-                                <h3 className={styles.title}>{title}</h3>
-                                <div className={styles.cat}>{cat}</div>
-                                <div className={styles.info}>
-                                    <div className={styles.prices}>
-                                        <div className={styles.price}>{price}$</div>
-                                        <div className={styles.oldPrice}>
-                                            {Math.floor(price * 0.8)}$
-                                        </div>
-                                    </div>
-
-                                    <div className={styles.purchases}>
-                                        {Math.floor(Math.random() * 20 + 1)} purchased
-                                    </div>
-                                </div>
-                            </div>
+                            <ProductsImages images={images}/>
+                            <ProductsInfo title={title} cat={cat} price={price}/>
                         </Link>
                     ))}
                 {}

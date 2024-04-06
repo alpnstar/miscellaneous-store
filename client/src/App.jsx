@@ -10,8 +10,8 @@ import {loginUser, userActions} from "./store/slices/user/userSlice";
 import {useGetCategoriesQuery} from "./store/query/categoriesApi";
 
 const App = () => {
-    const cart = useSelector(({user}) => user.cart);
     const dispatch = useDispatch();
+    const cart = useSelector(({user}) => user.cart);
 
     const {data: categories} = useGetCategoriesQuery();
 

@@ -10,7 +10,6 @@ import {useGetCategoriesQuery} from "../../store/query/categoriesApi";
 const FILTER_PRICE = 100;
 
 const Home = () => {
-    const dispatch = useDispatch();
     const {
         data: products,
         error: productsError,

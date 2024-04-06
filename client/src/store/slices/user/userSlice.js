@@ -67,13 +67,13 @@ const userSlice = createSlice({
         removeItemInCart: (state, {payload}) => {
             state.cart = state.cart.filter(item => item.product.id !== payload);
         },
-        getCart: (state, {payload}) => {
+        getCart: (state) => {
             state.cart = JSON.parse(localStorage.getItem('cart')) || [];
         },
-        setCart: (state, {payload}) => {
+        setCart: (state) => {
             localStorage.setItem('cart', JSON.stringify(state.cart));
         },
-        setCartTotalQuantity: (state, {payload}) => {
+        setCartTotalQuantity: (state) => {
             state.totalCartQuantity = state.cart.reduce((acc, item) => acc + item.quantity, 0);
         },
         toggleForm: (state, {payload}) => {
@@ -96,4 +96,3 @@ const userSlice = createSlice({
     }
 })
 export const {actions: userActions, reducer: userReducer} = userSlice;
-// asyncThunk_refactored_to_rtk

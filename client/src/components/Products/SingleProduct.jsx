@@ -1,5 +1,5 @@
 import React, {useMemo} from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 import Products from "./Products";
 import Product from "./Product";
@@ -7,10 +7,11 @@ import {useGetProductByIdQuery, useGetProductsQuery} from "../../store/query/pro
 
 const SingleProduct = () => {
     const {id} = useParams();
-    const navigate = useNavigate();
     const {data: products} = useGetProductsQuery();
     const {data: product} = useGetProductByIdQuery(id);
-    const relatedProducts = useMemo(() => products && product && products.filter(({category}) => category.id === product.category.id), [products])
+    const relatedProducts = useMemo(() =>
+        products && product &&
+        products.filter(({category}) => category.id === product.category.id), [id, product, products])
     return (
         <>
             {product && <Product product={product}/>}
